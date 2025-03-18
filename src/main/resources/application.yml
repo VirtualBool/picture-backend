@@ -5,12 +5,16 @@ server:
 spring:
   application:
     name: yu-picture-backend
+
     # 数据库配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/yu_picture
     username: root
     password: c278396
+  servlet:
+    multipart:
+      max-file-size: 10MB
 mybatis-plus:
   configuration:
     # MyBatis 配置
