@@ -1,14 +1,13 @@
 package com.yupi.yupicturebackend.mapper;
 
-
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.yupi.yupicturebackend.model.entity.User;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
-* @author 86176
+* @author 李鱼皮
 * @description 针对表【user(用户)】的数据库操作Mapper
-* @createDate 2025-03-13 10:03:42
-* @Entity generator.domain.User
+* @createDate 2024-12-09 20:03:03
+* @Entity com.yupi.yupicturebackend.model.entity.User
 */
 public interface UserMapper extends BaseMapper<User> {
 

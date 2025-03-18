@@ -1,7 +1,5 @@
 package com.yupi.yupicturebackend.controller;
 
-
-
 import com.yupi.yupicturebackend.common.BaseResponse;
 import com.yupi.yupicturebackend.common.ResultUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +15,7 @@ public class MainController {
      */
     @GetMapping("/health")
     public BaseResponse<String> health() {
-        System.out.println(1);
         return ResultUtils.success("ok");
     }
+
 }

@@ -5,7 +5,7 @@ server:
 spring:
   application:
     name: yu-picture-backend
-
+    # 数据库配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/yu_picture
@@ -13,8 +13,9 @@ spring:
     password: c278396
 mybatis-plus:
   configuration:
+    # MyBatis 配置
     map-underscore-to-camel-case: false
-    # 仅在开发环境开启日志
+    # 仅在开发环境打印日志
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:
@@ -25,7 +26,7 @@ mybatis-plus:
 knife4j:
   enable: true
   openapi:
-    title: "接口文档"
+    title: 接口文档
     version: 1.0
     group:
       default:

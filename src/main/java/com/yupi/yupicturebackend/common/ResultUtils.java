@@ -1,6 +1,10 @@
 package com.yupi.yupicturebackend.common;
+
 import com.yupi.yupicturebackend.exception.ErrorCode;
 
+/**
+ * 响应工具类
+ */
 public class ResultUtils {
 
     /**
@@ -35,7 +39,7 @@ public class ResultUtils {
         return new BaseResponse<>(code, null, message);
     }
 
-     /**
+    /**
      * 失败
      *
      * @param errorCode 错误码

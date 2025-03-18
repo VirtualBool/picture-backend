@@ -2,6 +2,9 @@ package com.yupi.yupicturebackend.common;
 
 import lombok.Data;
 
+/**
+ * 通用的分页请求类
+ */
 @Data
 public class PageRequest {
 
@@ -21,7 +24,7 @@ public class PageRequest {
     private String sortField;
 
     /**
-     * 排序顺序（默认降序）
+     * 排序顺序（默认升序）
      */
     private String sortOrder = "descend";
 }
