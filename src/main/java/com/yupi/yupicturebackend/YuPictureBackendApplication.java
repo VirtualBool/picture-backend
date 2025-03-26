@@ -7,9 +7,9 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
+@EnableAsync
 @MapperScan("com.yupi.yupicturebackend.mapper")
 @EnableAspectJAutoProxy(exposeProxy = true)
-@EnableAsync
 public class YuPictureBackendApplication {
 
     public static void main(String[] args) {

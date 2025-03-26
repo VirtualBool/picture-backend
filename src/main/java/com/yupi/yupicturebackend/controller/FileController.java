@@ -15,23 +15,25 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 
+@Slf4j
 @RestController
 @RequestMapping("/file")
-@Slf4j
 public class FileController {
+
+    @Resource
+    private CosManager cosManager;
 
     /**
      * 测试文件上传
      *
      * @param multipartFile
-     *
+     * @return
      */
-    @Resource
-    CosManager cosManager;
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     @PostMapping("/test/upload")
     public BaseResponse<String> testUploadFile(@RequestPart("file") MultipartFile multipartFile) {
@@ -44,7 +46,7 @@ public class FileController {
             file = File.createTempFile(filepath, null);
             multipartFile.transferTo(file);
             cosManager.putObject(filepath, file);
-            // 返回可访问地址
+            // 返回可访问的地址
             return ResultUtils.success(filepath);
         } catch (Exception e) {
             log.error("file upload error, filepath = " + filepath, e);
@@ -73,7 +75,6 @@ public class FileController {
         try {
             COSObject cosObject = cosManager.getObject(filepath);
             cosObjectInput = cosObject.getObjectContent();
-            // 处理下载到的流
             byte[] bytes = IOUtils.toByteArray(cosObjectInput);
             // 设置响应头
             response.setContentType("application/octet-stream;charset=UTF-8");
@@ -85,12 +86,18 @@ public class FileController {
             log.error("file download error, filepath = " + filepath, e);
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "下载失败");
         } finally {
+            // 释放流
             if (cosObjectInput != null) {
                 cosObjectInput.close();
             }
         }
+
     }
-
-
-
 }
+
+
+
+
+
+
+

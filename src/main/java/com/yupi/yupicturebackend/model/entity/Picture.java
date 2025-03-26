@@ -1,10 +1,10 @@
 package com.yupi.yupicturebackend.model.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
-import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
+import lombok.Data;
 
 /**
  * 图片
@@ -23,6 +23,11 @@ public class Picture implements Serializable {
      * 图片 url
      */
     private String url;
+
+    /**
+     * 缩略图 url
+     */
+    private String thumbnailUrl;
 
     /**
      * 图片名称
@@ -75,25 +80,10 @@ public class Picture implements Serializable {
     private Long userId;
 
     /**
-     * 创建时间
+     * 空间 id
      */
-    private Date createTime;
+    private Long spaceId;
 
-    /**
-     * 编辑时间
-     */
-    private Date editTime;
-
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
-
-    /**
-     * 是否删除
-     */
-    @TableLogic
-    private Integer isDelete;
     /**
      * 审核状态：0-待审核; 1-通过; 2-拒绝
      */
@@ -113,6 +103,27 @@ public class Picture implements Serializable {
      * 审核时间
      */
     private Date reviewTime;
+
+    /**
+     * 创建时间
+     */
+    private Date createTime;
+
+    /**
+     * 编辑时间
+     */
+    private Date editTime;
+
+    /**
+     * 更新时间
+     */
+    private Date updateTime;
+
+    /**
+     * 是否删除
+     */
+    @TableLogic
+    private Integer isDelete;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

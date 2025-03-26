@@ -4,6 +4,11 @@ import lombok.Data;
 
 import java.io.Serializable;
 
+/**
+ * 图片上传请求
+ *
+ * @author 程序员鱼皮 <a href="https://www.codefather.cn">编程导航原创项目</a>
+ */
 @Data
 public class PictureUploadRequest implements Serializable {
 
@@ -22,6 +27,10 @@ public class PictureUploadRequest implements Serializable {
      */
     private String picName;
 
+    /**
+     * 空间 id
+     */
+    private Long spaceId;
 
     private static final long serialVersionUID = 1L;
 }
