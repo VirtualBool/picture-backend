@@ -6,9 +6,7 @@ import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.RandomUtil;
 import com.qcloud.cos.model.PutObjectResult;
 import com.qcloud.cos.model.ciModel.persistence.ImageInfo;
-import com.qcloud.cos.model.ciModel.persistence.OriginalInfo;
-import com.yupi.yupicturebackend.common.ResultUtils;
-import com.yupi.yupicturebackend.config.CosClientConfig;
+import com.yupi.yupicturebackend.common.config.CosClientConfig;
 import com.yupi.yupicturebackend.exception.BusinessException;
 import com.yupi.yupicturebackend.exception.ErrorCode;
 import com.yupi.yupicturebackend.exception.ThrowUtils;
@@ -76,6 +74,7 @@ public class FileManager {
             uploadPictureResult.setPicHeight(picHeight);
             uploadPictureResult.setPicScale(picScale);
             uploadPictureResult.setPicFormat(imageInfo.getFormat());
+
             // 返回可访问的地址
             return uploadPictureResult;
         } catch (Exception e) {

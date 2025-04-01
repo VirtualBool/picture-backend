@@ -101,6 +101,11 @@ public class PictureVO implements Serializable {
      * 创建用户信息
      */
     private UserVO user;
+    /**
+     * 图片主色调
+     */
+    private String picColor;
+
 
     private static final long serialVersionUID = 1L;
 

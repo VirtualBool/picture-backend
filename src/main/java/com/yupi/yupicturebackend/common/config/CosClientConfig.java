@@ -1,4 +1,4 @@
-package com.yupi.yupicturebackend.config;
+package com.yupi.yupicturebackend.common.config;
 
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.ClientConfig;

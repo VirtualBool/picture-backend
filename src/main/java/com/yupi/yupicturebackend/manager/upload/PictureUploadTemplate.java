@@ -9,7 +9,7 @@ import com.qcloud.cos.model.PutObjectResult;
 import com.qcloud.cos.model.ciModel.persistence.CIObject;
 import com.qcloud.cos.model.ciModel.persistence.ImageInfo;
 import com.qcloud.cos.model.ciModel.persistence.ProcessResults;
-import com.yupi.yupicturebackend.config.CosClientConfig;
+import com.yupi.yupicturebackend.common.config.CosClientConfig;
 import com.yupi.yupicturebackend.exception.BusinessException;
 import com.yupi.yupicturebackend.exception.ErrorCode;
 import com.yupi.yupicturebackend.manager.CosManager;
@@ -73,7 +73,7 @@ public abstract class PictureUploadTemplate {
                     thumbnailCiObject = objectList.get(1);
                 }
                 // 封装压缩图的返回结果
-                return buildResult(originalFilename, compressedCiObject, thumbnailCiObject);
+                return buildResult(originalFilename, compressedCiObject, thumbnailCiObject,imageInfo);
             }
             return buildResult(originalFilename, file, uploadPath, imageInfo);
         } catch (Exception e) {
@@ -104,31 +104,30 @@ public abstract class PictureUploadTemplate {
     /**
      * 封装返回结果
      *
-     * @param originalFilename   原始文件名
+     * @param originFilename   原始文件名
      * @param compressedCiObject 压缩后的对象
      * @param thumbnailCiObject 缩略图对象
      * @return
      */
-    private UploadPictureResult buildResult(String originalFilename, CIObject compressedCiObject, CIObject thumbnailCiObject) {
-        // 计算宽高
+    private UploadPictureResult buildResult(String originFilename, CIObject compressedCiObject, CIObject thumbnailCiObject, ImageInfo imageInfo) {
+        UploadPictureResult uploadPictureResult = new UploadPictureResult();
         int picWidth = compressedCiObject.getWidth();
         int picHeight = compressedCiObject.getHeight();
         double picScale = NumberUtil.round(picWidth * 1.0 / picHeight, 2).doubleValue();
-        // 封装返回结果
-        UploadPictureResult uploadPictureResult = new UploadPictureResult();
-        // 设置压缩后的原图地址
-        uploadPictureResult.setUrl(cosClientConfig.getHost() + "/" + compressedCiObject.getKey());
-        uploadPictureResult.setPicName(FileUtil.mainName(originalFilename));
-        uploadPictureResult.setPicSize(compressedCiObject.getSize().longValue());
+        uploadPictureResult.setPicName(FileUtil.mainName(originFilename));
         uploadPictureResult.setPicWidth(picWidth);
         uploadPictureResult.setPicHeight(picHeight);
         uploadPictureResult.setPicScale(picScale);
         uploadPictureResult.setPicFormat(compressedCiObject.getFormat());
-        // 设置缩略图地址
+        uploadPictureResult.setPicColor(imageInfo.getAve());
+        uploadPictureResult.setPicSize(compressedCiObject.getSize().longValue());
+        // 设置图片为压缩后的地址
+        uploadPictureResult.setUrl(cosClientConfig.getHost() + "/" + compressedCiObject.getKey());
+        // 设置缩略图
         uploadPictureResult.setThumbnailUrl(cosClientConfig.getHost() + "/" + thumbnailCiObject.getKey());
-        // 返回可访问的地址
         return uploadPictureResult;
     }
+
 
     /**
      * 封装返回结果
@@ -153,6 +152,7 @@ public abstract class PictureUploadTemplate {
         uploadPictureResult.setPicHeight(picHeight);
         uploadPictureResult.setPicScale(picScale);
         uploadPictureResult.setPicFormat(imageInfo.getFormat());
+        uploadPictureResult.setPicColor(imageInfo.getAve());
         // 返回可访问的地址
         return uploadPictureResult;
     }

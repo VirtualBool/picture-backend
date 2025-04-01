@@ -7,7 +7,7 @@ import com.qcloud.cos.model.GetObjectRequest;
 import com.qcloud.cos.model.PutObjectRequest;
 import com.qcloud.cos.model.PutObjectResult;
 import com.qcloud.cos.model.ciModel.persistence.PicOperations;
-import com.yupi.yupicturebackend.config.CosClientConfig;
+import com.yupi.yupicturebackend.common.config.CosClientConfig;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;

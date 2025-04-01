@@ -1,4 +1,4 @@
-package com.yupi.yupicturebackend.config;
+package com.yupi.yupicturebackend.common.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
